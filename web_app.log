@@ -280,3 +280,43 @@
 {"level":"DEBUG","time":"2024-03-29T11:16:42.363+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
 {"level":"DEBUG","time":"2024-03-29T11:17:04.008+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
 {"level":"DEBUG","time":"2024-03-29T11:17:13.250+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"DEBUG","time":"2024-03-29T14:18:52.020+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"INFO","time":"2024-03-29T14:19:10.209+0800","caller":"logger/logger.go:81","msg":"/community","status":200,"method":"POST","path":"/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0}
+{"level":"INFO","time":"2024-03-29T14:19:17.318+0800","caller":"logger/logger.go:81","msg":"/community","status":200,"method":"GET","path":"/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0009945}
+{"level":"INFO","time":"2024-03-29T14:19:48.337+0800","caller":"logger/logger.go:81","msg":"/v1/community","status":200,"method":"GET","path":"/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0}
+{"level":"INFO","time":"2024-03-29T14:19:58.344+0800","caller":"logger/logger.go:81","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0}
+{"level":"INFO","time":"2024-03-29T14:20:08.882+0800","caller":"logger/logger.go:81","msg":"/api/v1/login","status":200,"method":"GET","path":"/api/v1/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0}
+{"level":"INFO","time":"2024-03-29T14:20:12.930+0800","caller":"logger/logger.go:81","msg":"/api/v1/login","status":200,"method":"POST","path":"/api/v1/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0024443}
+{"level":"ERROR","time":"2024-03-29T14:20:48.008+0800","caller":"controller/comunity.go:16","msg":"logic.GetCommunityList failed"}
+{"level":"INFO","time":"2024-03-29T14:20:48.008+0800","caller":"logger/logger.go:81","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0054319}
+{"level":"DEBUG","time":"2024-03-29T14:21:49.270+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"INFO","time":"2024-03-29T14:21:52.890+0800","caller":"logger/logger.go:81","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0005122}
+{"level":"INFO","time":"2024-03-29T14:22:51.942+0800","caller":"logger/logger.go:81","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0036026}
+{"level":"DEBUG","time":"2024-03-29T14:23:53.099+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"INFO","time":"2024-03-29T14:23:55.459+0800","caller":"logger/logger.go:81","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.000596}
+{"level":"INFO","time":"2024-03-29T14:24:41.724+0800","caller":"logger/logger.go:81","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0006072}
+{"level":"DEBUG","time":"2024-03-29T17:35:50.333+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"INFO","time":"2024-03-29T17:35:57.752+0800","caller":"logger/logger.go:81","msg":"/api/v1/community/1","status":200,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0017415}
+{"level":"DEBUG","time":"2024-03-29T17:36:44.998+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"ERROR","time":"2024-03-29T17:36:47.128+0800","caller":"controller/comunity.go:37","msg":"logic.GetCommunityList() failed","error":"scannable dest type ptr with >1 columns (4) in result"}
+{"level":"INFO","time":"2024-03-29T17:36:47.128+0800","caller":"logger/logger.go:81","msg":"/api/v1/community/1","status":200,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0011376}
+{"level":"DEBUG","time":"2024-03-29T17:36:59.087+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"INFO","time":"2024-03-29T17:37:43.229+0800","caller":"logger/logger.go:81","msg":"/api/v1/community/1","status":200,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0011994}
+{"level":"DEBUG","time":"2024-03-29T17:38:10.913+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"INFO","time":"2024-03-29T17:38:12.654+0800","caller":"logger/logger.go:81","msg":"/api/v1/community/1","status":200,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0009275}
+{"level":"DEBUG","time":"2024-03-29T17:39:15.274+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"INFO","time":"2024-03-29T17:39:16.850+0800","caller":"logger/logger.go:81","msg":"/api/v1/community/1","status":200,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0010137}
+{"level":"DEBUG","time":"2024-03-29T17:39:54.067+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"INFO","time":"2024-03-29T17:39:57.408+0800","caller":"logger/logger.go:81","msg":"/api/v1/community/1","status":200,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0019556}
+{"level":"DEBUG","time":"2024-03-29T17:40:46.033+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"ERROR","time":"2024-03-29T17:40:47.912+0800","caller":"controller/comunity.go:37","msg":"logic.GetCommunityList() failed","error":"scannable dest type ptr with >1 columns (4) in result"}
+{"level":"INFO","time":"2024-03-29T17:40:47.912+0800","caller":"logger/logger.go:81","msg":"/api/v1/community/1","status":200,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0007855}
+{"level":"DEBUG","time":"2024-03-29T17:41:06.462+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"ERROR","time":"2024-03-29T17:41:09.378+0800","caller":"controller/comunity.go:37","msg":"logic.GetCommunityList() failed","error":"scannable dest type ptr with >1 columns (4) in result"}
+{"level":"INFO","time":"2024-03-29T17:41:09.378+0800","caller":"logger/logger.go:81","msg":"/api/v1/community/1","status":200,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0010439}
+{"level":"DEBUG","time":"2024-03-29T17:41:18.896+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"INFO","time":"2024-03-29T17:41:21.270+0800","caller":"logger/logger.go:81","msg":"/api/v1/community/1","status":200,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0009672}
+{"level":"DEBUG","time":"2024-03-29T17:41:38.325+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"INFO","time":"2024-03-29T17:41:40.042+0800","caller":"logger/logger.go:81","msg":"/api/v1/community/1","status":200,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.000983}
+{"level":"DEBUG","time":"2024-03-29T17:41:55.292+0800","caller":"bluebell/main.go:31","msg":"logger init success..."}
+{"level":"INFO","time":"2024-03-29T17:41:56.776+0800","caller":"logger/logger.go:81","msg":"/api/v1/community/1","status":200,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.37.0","errors":"","cost":0.0014952}
