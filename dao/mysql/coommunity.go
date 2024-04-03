@@ -4,7 +4,6 @@ import (
 	"bluebell/models"
 	"database/sql"
 	"errors"
-	"fmt"
 
 	"go.uber.org/zap"
 )
@@ -25,7 +24,6 @@ func GetCommunityDetailByID(id int64) (community *models.CommunityDetail, err er
 	community = new(models.CommunityDetail)
 	sqlStr := "select community_id, community_name, introduction, create_time from community where community_id=?"
 	err = db.Get(community, sqlStr, id)
-	fmt.Println(community)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			err = errors.New("there is invalid id")

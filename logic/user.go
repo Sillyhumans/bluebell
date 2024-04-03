@@ -41,7 +41,7 @@ func Login(p *models.ParamLogin) (aToken, rToken string, err error) {
 	fmt.Println(p.Username)
 	// 数据库查询错误
 	if err != nil {
-		if err == sql.ErrNoRows {
+		if errors.Is(err, sql.ErrNoRows) {
 			return "", "", errors.New("用户不存在")
 		}
 		return "", "", err

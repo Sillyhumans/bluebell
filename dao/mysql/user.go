@@ -46,3 +46,10 @@ func EncryptPassword(oPassword string) string {
 	h.Write([]byte(secret))
 	return hex.EncodeToString(h.Sum([]byte(oPassword)))
 }
+
+func GetUserByID(userID int64) (user *models.User, err error) {
+	user = new(models.User)
+	sqlStr := "select user_id, gender, username, password, email from user where user_id=?"
+	err = db.Get(user, sqlStr, userID)
+	return
+}
