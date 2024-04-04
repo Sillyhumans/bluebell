@@ -35,3 +35,9 @@ type VoteData struct {
 	UserID int64 `json:"user_id"`
 	Vote   int8  `json:"vote" binding:"required,oneof=1 0 -1"`
 }
+
+type ParaPostList struct {
+	Page  int64  `json:"page" form:"page"`
+	Size  int64  `json:"size" form:"size"`
+	Order string `json:"order" form:"order,oneof=time score"`
+}

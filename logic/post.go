@@ -2,8 +2,16 @@ package logic
 
 import (
 	"bluebell/dao/mysql"
+	"bluebell/dao/redis"
 	"bluebell/models"
 	mySnowflake "bluebell/pkg/snowflake"
+	"errors"
+	"strconv"
+)
+
+var (
+	orderTime  = "time"
+	orderScore = "score"
 )
 
 func CreatePost(p *models.Post) error {
@@ -11,6 +19,11 @@ func CreatePost(p *models.Post) error {
 	p.ID = int64(mySnowflake.GetID())
 	// 保存到数据库
 	err := mysql.CreatePost(p)
+	if err != nil {
+		return err
+	}
+	// 计算分数 存入缓存
+	err = SetPostScore(0, 0, p.ID)
 	return err
 }
 
@@ -38,31 +51,51 @@ func GetPostByID(pid int64) (data *models.ApiPostDetail, err error) {
 }
 
 // GetPostList 获取所有post以及每个post的作者，社区信息
-func GetPostList(offset, limit int64) (data []*models.ApiPostDetail, errs error) {
-	// 获取所有post
-	posts, errs := mysql.GetPostList(offset, limit)
-	if errs != nil {
-		return
+func GetPostList(p *models.ParaPostList) (data []*models.ApiPostDetail, err error) {
+	//从redis获取 post的id
+	//如果是按分数排名
+	var (
+		ids   []string
+		posts []*models.Post
+	)
+	if p.Order == orderScore {
+		ids, err = redis.GetPostOrderScore(p)
+		if err != nil {
+			return
+		}
+		posts, err = mysql.GetPostListByIDs(ids)
+		if err != nil {
+			return
+		}
+	} else if p.Order == orderTime {
+		posts, err = mysql.GetPostList(p.Page, p.Size)
+		ids = make([]string, len(posts))
+		for i := 0; i < len(posts); i++ {
+			ids[i] = strconv.Itoa(int(posts[i].AuthorID))
+		}
+		if err != nil {
+			return
+		}
+	} else {
+		return nil, errors.New("invalid err")
 	}
+
 	l := len(posts)
 	data = make([]*models.ApiPostDetail, 0, l)
-
 	// 获取所有post对应user
 	for i := 0; i < l; i++ {
 		user, err := mysql.GetUserByID(posts[i].AuthorID)
 		if err != nil {
-			errs = err
-			return
+			return nil, err
 		}
 		community, err := mysql.GetCommunityDetailByID(posts[i].CommunityID)
 		if err != nil {
-			errs = err
-			return
+			return nil, err
 		}
 		postDetail := &models.ApiPostDetail{
-			user,
-			posts[i],
-			community,
+			User:            user,
+			Post:            posts[i],
+			CommunityDetail: community,
 		}
 		data = append(data, postDetail)
 	}

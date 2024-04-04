@@ -1,6 +1,7 @@
 package vote
 
 import (
+	"bluebell/dao/mysql"
 	"fmt"
 	"math"
 	"strconv"
@@ -8,6 +9,15 @@ import (
 )
 
 var beginTime = "2024-03-15 07:46:43"
+
+func GetUpAndDown(postID int64) (up, down int64, err error) {
+	up, err = mysql.GetCountUp(postID)
+	if err != nil {
+		return
+	}
+	down, err = mysql.GetCountDown(postID)
+	return
+}
 
 func GetTimeUnix(t time.Time) int64 {
 	layout := "2006-01-02 15:04:05"
@@ -22,7 +32,7 @@ func GetTimeUnix(t time.Time) int64 {
 3.讨论度越高的帖子分数越高
 */
 
-func hot(up, down int64, ti time.Time) (score float64) {
+func Hot(up, down int64, ti time.Time) (score float64) {
 
 	// t表示beginTime到发帖为止的时间戳   t = 发贴时间 - beginTime
 	//t越大，得分越高，即新帖子的得分会高于老帖子。它起到自动将老帖子的排名往下拉的作用。

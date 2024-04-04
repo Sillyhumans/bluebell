@@ -4,6 +4,7 @@ import (
 	"bluebell/dao/mysql"
 	"bluebell/dao/redis"
 	"bluebell/models"
+	"bluebell/pkg/vote"
 	"database/sql"
 	"errors"
 	"strconv"
@@ -11,10 +12,10 @@ import (
 
 // PostVote 为帖子投票
 func PostVote(p *models.VoteData) error {
-	var vote int8
+	var v int8
 	key := strconv.FormatInt(p.PostID, 10) + strconv.FormatInt(p.UserID, 10)
 	// 向redis中查找是否有值
-	vote, err := redis.GetVote(key)
+	v, err := redis.GetVote(key)
 	if err != nil {
 		// 如果没有值 查找数据库
 		voteObj, err1 := mysql.QueryVote(p)
@@ -30,17 +31,23 @@ func PostVote(p *models.VoteData) error {
 				return err2
 			}
 			// 更新帖子分数
-			redis.UpdatePostScore()
+			up, down, err2 := vote.GetUpAndDown(p.PostID)
+			if err2 != nil {
+				return err2
+			}
+			err2 = SetPostScore(up, down, p.PostID)
+			if err2 != nil {
+				return err2
+			}
 			return err2
 		} else if err1 != nil {
 			return err1
 		}
-		vote = voteObj.Vote
+		v = voteObj.Vote
 	}
-
 	// 用户投过票 则进行对比
 	// 相同则不进行更新 否则更新并删除redis缓存
-	if p.Vote == vote {
+	if p.Vote == v {
 		return nil
 	} else {
 		// 更新数据库
@@ -49,12 +56,29 @@ func PostVote(p *models.VoteData) error {
 			return err
 		}
 		// 更新帖子分数
-		redis.UpdatePostScore()
+		up, down, err := vote.GetUpAndDown(p.PostID)
+		if err != nil {
+			return err
+		}
+		err = SetPostScore(up, down, p.PostID)
+		if err != nil {
+			return err
+		}
 		// 删除缓存, 如果缓存不存在就更新缓存
-		err = redis.DelSetVote(key, vote)
+		err = redis.DelSetVote(key, v)
 		if err != nil {
 			return err
 		}
 	}
 	return nil
+}
+
+func SetPostScore(up, down int64, postID int64) error {
+	t, err := mysql.GetPostCreateTime(postID)
+	if err != nil {
+		return err
+	}
+	score := vote.Hot(up, down, t)
+	err = redis.SetPostScore(postID, score)
+	return err
 }

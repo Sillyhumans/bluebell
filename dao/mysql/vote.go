@@ -22,3 +22,27 @@ func UpdateVote(p *models.VoteData) (err error) {
 	_, err = db.Exec(sqlStr, p.Vote, p.PostID, p.UserID)
 	return
 }
+
+func GetCountUp(postID int64) (up int64, err error) {
+	sqlStr := "select count(*) from vote where vote=1 and post_id = ?"
+	row, err := db.Query(sqlStr, postID)
+	for row.Next() {
+		err = row.Scan(&up)
+		if err != nil {
+			return
+		}
+	}
+	return
+}
+
+func GetCountDown(postID int64) (up int64, err error) {
+	sqlStr := "select count(*) from vote where vote=-1 and post_id = ?"
+	row, err := db.Query(sqlStr, postID)
+	for row.Next() {
+		err = row.Scan(&up)
+		if err != nil {
+			return
+		}
+	}
+	return
+}

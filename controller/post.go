@@ -11,6 +11,10 @@ import (
 	"github.com/go-playground/validator"
 )
 
+var (
+	orderTime = "time"
+)
+
 func CreatePostHandler(c *gin.Context) {
 	// 1.获取参数及参数校验
 	p := new(models.Post)
@@ -75,26 +79,20 @@ func GetPostDetailHandler(c *gin.Context) {
 
 func GetPostListHandler(c *gin.Context) {
 	// 获取参数
-	pageNumStr := c.Query("page")
-	pageSize := c.Query("size")
-
-	var (
-		page int64
-		size int64
-		err  error
-	)
-
-	page, err = strconv.ParseInt(pageNumStr, 10, 64)
-	if err != nil {
-		page = 1
+	p := models.ParaPostList{
+		Page:  1,
+		Size:  10,
+		Order: orderTime,
 	}
-	size, err = strconv.ParseInt(pageSize, 10, 64)
-	if err != nil {
-		size = 10
+
+	if err := c.ShouldBindQuery(p); err != nil {
+		zap.L().Error("GetPostListHandler with invalid params", zap.Error(err))
+		ResponseError(c, CodeInvalidParam)
+		return
 	}
 
 	// 获取数据
-	data, err := logic.GetPostList(page, size)
+	data, err := logic.GetPostList(&p)
 	if err != nil {
 		// 请求参数有误
 		zap.L().Error("GetPostList failed", zap.Error(err))
